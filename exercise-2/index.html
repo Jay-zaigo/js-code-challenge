@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+  <html>
+
+  <head>
+      <title>Todo list App</title>
+      <link href='http://fonts.googleapis.com/css?family=Lato:300,400,700' rel='stylesheet' type='text/css'>
+      <link rel="stylesheet" type="text/css" href="css/ex2-style.css">
+      <script type="text/javascript" src="js/app.js"> </script>
+  </head>
+
+  <body onload="javascript:callMeFirst();">
+      <div class="container">
+          <div class="add-new-task-section">
+          <p>
+              <label id="new-task-label" for="new-task" style="display: block; margin: 0 0 20px">
+                  <b>Add Item</b>
+              </label>
+              <input id="new-task" type="text" placeholder="New Item" />
+              <button id="add-button">Add</button>
+          </p>
+        </div>
+        <div class="incomplete-tasks-section" >
+          <h3>
+            <b>Todo</b>
+          </h3>
+          <ul id="incomplete-tasks">
+          </ul>
+        </div>
+        <div class="completed-tasks-section"></div>
+          <h3>
+            <b>Completed</b>
+          </h3>
+          <ul id="completed-tasks">
+          </ul>
+        </div>
+      </div>
+
+  </body>
+
+</html>
+

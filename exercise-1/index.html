@@ -1,0 +1,182 @@
+<html>
+    <head>
+        <title>Testing the First Exercise</title>
+        <!-- Load Font Awesome Icon Library -->
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+        <link href='http://fonts.googleapis.com/css?family=Lato:300,400,700' rel='stylesheet' type='text/css'>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.7.7/handlebars.min.js" integrity="sha512-RNLkV3d+aLtfcpEyFG8jRbnWHxUqVZozacROI4J2F1sTaDqo1dPQYs01OMi1t1w9Y2FdbSCDSQ2ZVdAC8bzgAg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+        <script>
+            function callMeFirst()
+            {
+                console.log("Test me first :: 1111");
+                fetch('https://5dc588200bbd050014fb8ae1.mockapi.io/assessment')
+                    .then(response => response.json())
+                    .then(data => {
+                        console.log(data);
+                        var userRenderHtmlElement = document.getElementById("list-users-template");
+                        var listDeviceListHandler = Handlebars.compile(userRenderHtmlElement.innerHTML);
+                        var length = data.length;
+                        var totalRows = 0;
+                        if(length > 0)
+                        {
+                            var userListElement = document.getElementById("user-list-element");
+                            userListElement.innerHTML = "";
+                            for (var ijk = 0; ijk < length; ijk++)
+                            {
+                                var row = data[ijk];
+                                var createdTime = new Date(row.createdAt);
+                                row.createdTime = createdTime.toDateString();
+                                //var parser = new DOMParser();
+                                //var convertedHtml = parser.parseFromString(listDeviceListHandler(row), 'text/html');
+                                //userListElement.appendChild(convertedHtml.documentElement);
+                                userListElement.innerHTML = userListElement.innerHTML + listDeviceListHandler(row);
+                                /* * /
+                                if (ijk > 1) {
+                                    break;
+                                }
+                                /* */
+                            }
+                        }
+                    });
+                return;
+            }
+
+            // List View
+            function listView() {
+            // Get the elements with class="column"
+            var elements = document.getElementsByClassName("column");
+                for (var ij = 0; ij < elements.length; ij++) {
+                    elements[ij].style.width = "100%";
+                }
+            }
+
+            // Grid View
+            function gridView() {
+            // Get the elements with class="column"
+            var elements = document.getElementsByClassName("column");
+                for (var ik = 0; ik < elements.length; ik++) {
+                    elements[ik].style.width = "50%";
+                }
+            }
+
+            function toggleMoreData(sourceElement) 
+            {
+                //console.log("Heree ::: ");
+                var attributeVal = sourceElement.getAttribute("data-more-toggle");
+                //console.log("Heree Attrb Val ::: "+attributeVal);
+                var htmlElement = document.getElementById("more-toggle-"+attributeVal);
+                var aTextContent = "More";
+                //console.log("Heree Style Value ::: "+htmlElement.style.display);
+                if (htmlElement.style.display === "none" || htmlElement.style.display === "") {
+                    htmlElement.style.display = "block";
+                    var aTextContent = "Less";
+                }
+                else if (htmlElement.style.display === "block") {
+                    htmlElement.style.display = "none";
+                    var aTextContent = "More";
+                }
+                //console.log("Heree Text Content ::: "+aTextContent);
+                sourceElement.text = aTextContent;
+            }
+        </script>
+
+        <script id="list-users-template" type="text/x-handlebars-template">
+            {{#.}}
+            <div class="row">
+                <div class="column">
+                    <div class="column-content">
+                        <h2>{{this.name}}</h2>
+                        <img loading="lazy" src="{{this.avatar}}" onerror="this.onerror=null;this.src='images/avatar-man.jpg';" width="100" height="100" alt="Image of {{this.name}}" />
+                        <a id="more-{{this.id}}" href="#" class="more-button" data-more-toggle="{{this.id}}" onclick="javascript:toggleMoreData(this);">More</a>
+                    </div>
+                    <div id="more-toggle-{{this.id}}" class="column-toggle">
+                        <p>Avatar was Created Around : {{this.createdTime}}</p>
+                    </div>
+                </div>
+            </div>
+            
+            {{/.}}
+        </script>
+
+        <style>
+            body {
+                font-family:'Lato', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            }
+            .container{
+                width:95%;
+                margin:0 auto;
+            }
+            .button-container{
+                padding:20px;
+                font-size:1.4em;
+                font-family:'Lato','Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            }
+            .button-container button {
+                padding:10px;
+                font-family:'Lato','Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            }
+            /* Create two equal columns that floats next to each other */
+            .column {
+                float: left;
+                width: 100%;
+                padding: 10px;
+                font-family:'Lato','Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            }
+            .more-button {
+                border-radius:5px;
+                padding:10px;
+                float: right;
+                background-color: #056a75;
+                color:#fefefe;
+                text-decoration: none;
+            }
+
+            /* Clear floats after the columns */
+            .row:after {
+                content: "";
+                display: table;
+                clear: both;
+            }
+            .row:nth-child(odd) .column {
+                background-color:#3498db;
+            }
+            .row:nth-child(even) .column {
+                background-color:#2f80b6;
+            }
+            .column-toggle {
+                display:none;
+            }
+            .column-toggle p {
+                font-size: 1.2em;
+                font-weight: bold;
+                color: #fefefe;
+            }
+            .loader {
+                border: 16px solid #f3f3f3; /* Light grey */
+                border-top: 16px solid #3498db; /* Blue */
+                border-radius: 50%;
+                width: 120px;
+                height: 120px;
+                animation: spin 2s linear infinite;
+            }
+
+            @keyframes spin {
+                0% { transform: rotate(0deg); }
+                100% { transform: rotate(360deg); }
+            }            
+        </style>
+    </head>
+    <body onload="javascript:callMeFirst();">
+        <div class="container">
+            <div class="button-container">
+                <!-- Buttons to choose list or grid view -- >
+                <button onclick="listView()"><i class="fa fa-bars"></i> List</button>
+                <button onclick="gridView()"><i class="fa fa-th-large"></i> Grid</button>-->
+            </div>
+            <div id="user-list-element" class="user-list">
+                <div class="loader"></div>
+            </div>
+        </div>        
+    </body>
+</html>
+
