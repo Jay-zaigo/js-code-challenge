@@ -8,16 +8,16 @@
 ***
 
 ## Exercise 1: Consuming RESTful API data
-1. Query https://5dc588200bbd050014fb8ae1.mockapi.io/assessment for a list of users.
-2. You may use whatever tool you like for making that request (jQuery AJAX, vanilla jqXHR, ES6 fetch API, etc). But __do not use a JS framework__; that is overkill for this exercise.
+1. Query https://5dc588200bbd050014fb8ae1.mockapi.io/assessment for a list of users. - **(Done)**
+2. You may use whatever tool you like for making that request (jQuery AJAX, vanilla jqXHR, ES6 fetch API, etc). But __do not use a JS framework__; that is overkill for this exercise.- **(Done)**
 3. Print that data to the DOM in an unordered list.
-    * Use [Handlebars](https://handlebarsjs.com/) to render the data
-    * Each list item must show user name, avatar, created date, and ID
-4. Write unit tests for your JS, using the framework of your choice
+    * Use [Handlebars](https://handlebarsjs.com/) to render the data - **(Done)**
+    * Each list item must show user name, avatar, created date, and ID - **(Done)**
+4. Write unit tests for your JS, using the framework of your choice - **(Pending)**
 
 ### Optional Enhancement 1
-1. Only show name and avatar by default; add a button that reveals the ID and created-date on click.
-2. Set up a simple Node server to deliver the app to http://localhost:3000.
+1. Only show name and avatar by default; add a button that reveals the ID and created-date on click. - **(Done)**
+2. Set up a simple Node server to deliver the app to http://localhost:3000. - **(Pending)**
 
 ***
 
@@ -33,17 +33,17 @@ Solve the problems presented in whatever way you deem most appropriate and in ke
     * Use Sass for any styles.
 
 #### Fixes
-1. Break the contents of the HTML file into pieces that follow a logical separation of concerns for the browser.
-2. Fix any invalid HTML
-3. Fix any JS errors / inefficiencies.
-5. Utilize closures to prevent pollution of the global object with app code
+1. Break the contents of the HTML file into pieces that follow a logical separation of concerns for the browser. - **(Done)**
+2. Fix any invalid HTML - **(Done)**
+3. Fix any JS errors / inefficiencies. - **(Done)**
+4. Utilize closures to prevent pollution of the global object with app code - **(Done)**
 
 #### Features
-1. Make the form keyboard-accessible
-2. Add support for localStorage such that refreshing the page does not reset your task list
-3. Add form validation such that an empty task cannot be submitted.
-4. Convert float-based layouts to flexbox-based layouts. The visuals should not change, just the CSS that handles the layout.
-5. Make the design responsive, such that -
+1. Make the form keyboard-accessible - **(Need Clarification - Do we need to Provide Shortcuts or Tab Focus)**
+2. Add support for localStorage such that refreshing the page does not reset your task list - **(Done)**
+3. Add form validation such that an empty task cannot be submitted. - **(Done)**
+4. Convert float-based layouts to flexbox-based layouts. The visuals should not change, just the CSS that handles the layout. - **(Pending)**
+5. Make the design responsive, such that - **(HTML Redisign Pending)**
     * The form fills 100% width of the screen up until 375px wide
     * The form becomes centered in the page after 375px
     * There should be no horizontal scroll bars present at any width
